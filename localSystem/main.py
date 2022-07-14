@@ -76,7 +76,7 @@ def registro():
 e_1 = Entry(f_1, relief=GROOVE, bg=cor1, fg=cor2, width=25)
 e_1.place(x=200, y=218)
 
-e_2 = Entry(f_1, relief=GROOVE, bg=cor1, fg=cor2, width=25)
+e_2 = Entry(f_1, relief=GROOVE, bg=cor1, fg=cor2, width=25, show='*')
 e_2.place(x=200, y=280)
 
 
