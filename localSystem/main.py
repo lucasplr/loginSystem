@@ -1,10 +1,11 @@
+from ctypes import POINTER
 from tkinter import *
 from PIL import Image, ImageTk
-from traitlets import observe
+
 
 
 wd = Tk()
-wd.geometry('500x700')
+wd.geometry('500x450')
 wd.title('Local Login System')
 wd.resizable(width=FALSE, height=FALSE)
 
@@ -19,8 +20,6 @@ cor5 = '#22b071'
 f_1 = Frame(wd, width=500, height=450, bg=cor3)
 f_1.grid(row=0, column=0)
 
-f_2 = Frame(wd, width=500, height=250, bg=cor3)
-f_2.grid(row=1, column=0)
 
 #icon
 
@@ -51,6 +50,9 @@ icon3.place(x=155, y=277)
 l_1 = Label(f_1, text='Login de Usuário', relief=FLAT, bg=cor3, fg=cor5, font=('Ivy 20 bold'))
 l_1.place(x=140, y=140)
 
+l_2 = Label(f_1, text='Não possui conta?', bg=cor3, fg=cor2, font=('Ivy 10'))
+l_2.place(x=185, y=390)
+
 #entrys
 
 e_1 = Entry(f_1, relief=GROOVE, bg=cor1, fg=cor2, width=25)
@@ -58,5 +60,14 @@ e_1.place(x=200, y=218)
 
 e_2 = Entry(f_1, relief=GROOVE, bg=cor1, fg=cor2, width=25)
 e_2.place(x=200, y=280)
+
+
+#buttons
+
+btn = Button(f_1, text='Login', relief=FLAT, overrelief=RAISED, bg=cor4, fg=cor1, font=('Ivy 10'), width=10, height=2, cursor="hand2")
+btn.place(x=220, y=330)   
+
+btn2 = Button(f_1, text='Registro', bg=cor3, fg=cor4, relief=FLAT, font=('Ivy 10'), cursor="hand2")
+btn2.place(x=300, y=387)
 
 wd.mainloop()
