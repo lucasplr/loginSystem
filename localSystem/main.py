@@ -1,5 +1,6 @@
 from tkinter import *
 from PIL import Image, ImageTk
+from traitlets import observe
 
 
 wd = Tk()
@@ -27,8 +28,17 @@ img_0 = Image.open('img/icon.png')
 img_0 = img_0.resize((65, 65), Image.Resampling.LANCZOS)
 img_0 = ImageTk.PhotoImage(img_0)
 
+img_1 = Image.open('img/email.png')
+img_1 = img_1.resize((20, 20), Image.Resampling.LANCZOS)
+img_1 = ImageTk.PhotoImage(img_1)
+
+
+
 icon = Label(f_1, image=img_0, relief=FLAT)
 icon.place(x=220, y=45)
+
+icon2 = Label(f_1, image=img_1, relief=FLAT)
+icon2.place(x=155, y=197)
 
 
 #labels
@@ -39,7 +49,7 @@ l_1.place(x=140, y=140)
 #entrys
 
 e_1 = Entry(f_1, relief=GROOVE, bg=cor1, fg=cor2, width=25)
-e_1.place(x=215, y=200)
+e_1.place(x=200, y=200)
 
 
 wd.mainloop()
