@@ -55,21 +55,55 @@ l_2.place(x=185, y=390)
 
 #functions
 
+def check():
+    if btn['text'] == 'Login':
+        login()
+    else:
+        registrar()
+        changetolog()
+
+
+
 def login():
+
+    a = open('log.txt')
+    
+
     log = e_1.get()
     password = e_2.get()
+
+    registrados = a.readlines()
 
     print(log)
     print(password)
     if btn['text'] != 'Login':
-        registro()
+        changetolog()
+    else:
+        if log  + '\n' in registrados:
+            print('bem vindo')
+        else:
+            print('Usuário não cadastrado')
+    a.close()
 
-def registro():
+def registrar():
+
+    a = open('log.txt', 'a')
+
+    log = str(e_1.get())
+    password = e_2.get()
+
+    a.write(f'{log}\n')
+
+    a.close()
+
+def changetoreg():
     if btn['text'] == 'Login':    
         btn['text'] = 'Registrar'
-    elif btn['text'] == 'Registrar':
-        btn['text'] = 'Login'
+    
 
+def changetolog():
+    if btn['text'] == 'Registrar':
+        btn['text'] = 'Login';
 
 #entrys
 
@@ -82,10 +116,10 @@ e_2.place(x=200, y=280)
 
 #buttons
 
-btn = Button(f_1, text='Login', relief=FLAT, command=login, overrelief=RAISED, bg=cor4, fg=cor1, font=('Ivy 10'), width=10, height=2, cursor="hand2")
+btn = Button(f_1, text='Login', relief=FLAT, command=check, overrelief=RAISED, bg=cor4, fg=cor1, font=('Ivy 10'), width=10, height=2, cursor="hand2")
 btn.place(x=220, y=330)   
 
-btn2 = Button(f_1, text='Registro', command=registro, bg=cor3, fg=cor4, relief=FLAT, font=('Ivy 10'), cursor="hand2")
+btn2 = Button(f_1, text='Registro', command=changetoreg, bg=cor3, fg=cor4, relief=FLAT, font=('Ivy 10'), cursor="hand2")
 btn2.place(x=300, y=387)
 
 wd.mainloop()
