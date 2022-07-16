@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
+import DataBaser
 
 #window
 wd = Tk()
@@ -36,7 +37,20 @@ def registrar():
     email_en = ttk.Entry(rg_fr, width=30)
     email_en.place(x=195, y=67)
 
-    rg_btn = ttk.Button(rg_fr, text='Cadastrar', width=30)
+    def regData():
+        Name = str(name_en.get())
+        Email = str(email_en.get())
+        User = str(usr_en.get())
+        Password = str(psw_en.get())
+
+        DataBaser.cursor.execute("""
+        INSERT INTO Users (Name, Email, User, Password)
+        VALUES (?, ?, ?, ?)
+        """, (Name, Email, User, Password))
+        DataBaser.conn.commit()
+        messagebox.showinfo(title='Register Info', message='Registro realizado com sucesso')
+
+    rg_btn = ttk.Button(rg_fr, text='Cadastrar', width=30, command=regData)
     rg_btn.place(x=75, y=225)   
 
     def voltar():
