@@ -17,6 +17,24 @@ img_0 = PhotoImage(file='img/logo.png')
 
 #functions
 
+def login():
+    User = str(usr_en.get())
+    Password = str(psw_en.get())
+
+    DataBaser.cursor.execute("""
+    SELECT * FROM Users
+    WHERE User = ? AND Password = ?
+    """, (User, Password))
+
+    verify = DataBaser.cursor.fetchone()
+
+    try:
+        if (User in verify and Password in verify):
+            messagebox.showinfo(title='Login Info', message='Acesso Confirmado')
+    except:
+            messagebox.showinfo(title='Login Info', message='Acesso Negado')
+
+
 def registrar():
 
     #---
@@ -43,12 +61,15 @@ def registrar():
         User = str(usr_en.get())
         Password = str(psw_en.get())
 
-        DataBaser.cursor.execute("""
-        INSERT INTO Users (Name, Email, User, Password)
-        VALUES (?, ?, ?, ?)
-        """, (Name, Email, User, Password))
-        DataBaser.conn.commit()
-        messagebox.showinfo(title='Register Info', message='Registro realizado com sucesso')
+        if Name == '' or Email == '' or User == '' or Password == '':
+            messagebox.showerror(title='Erro no Registro', message='Preencha todos os campos')
+        else:
+            DataBaser.cursor.execute("""
+            INSERT INTO Users (Name, Email, User, Password)
+            VALUES (?, ?, ?, ?)
+            """, (Name, Email, User, Password))
+            DataBaser.conn.commit()
+            messagebox.showinfo(title='Register Info', message='Registro realizado com sucesso')
 
     rg_btn = ttk.Button(rg_fr, text='Cadastrar', width=30, command=regData)
     rg_btn.place(x=75, y=225)   
@@ -116,7 +137,7 @@ psw_en.place(x=195, y=145)
 
 #buttons
 
-log_btn = ttk.Button(rg_fr, text='Login', width=30)
+log_btn = ttk.Button(rg_fr, text='Login', width=30, command=login)
 log_btn.place(x=75, y=225)
 
 reg_btn = ttk.Button(rg_fr, text='Registrar', width=15, command=registrar)

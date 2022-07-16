@@ -8,8 +8,8 @@ cursor.execute("""
 CREATE TABLE IF NOT EXISTS Users (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     Name TEXT NOT NULL,
-    Email TEXT NOT NULL,
-    User TEXT NOT NULL,
+    Email TEXT NOT NULL UNIQUE,
+    User TEXT NOT NULL UNIQUE,
     Password TEXT NOT NULL
 );
 """)
